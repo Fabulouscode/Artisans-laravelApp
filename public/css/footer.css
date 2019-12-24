@@ -1,0 +1,41 @@
+.main-footer {
+    background: #2991A2;
+    padding-top: 60px;
+    padding-bottom: 50px;
+    /* color: rgba(255, 255, 255, 0.5); */
+    color: white;
+    line-height: 22px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+a {
+    color: white;
+}
+
+.bottom-footer {
+    background: #212124;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 22px;
+    font-size: 13px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.bg-white {
+    background-color: #212124;
+    ;
+    color: white;
+}
+
+.autofit2 {
+    height: 65px;
+    width: 350px;
+    object-fit: cover;
+}
+
+.autofit2D {
+    height: 100px;
+    width: 300px;
+    object-fit: cover;
+}
