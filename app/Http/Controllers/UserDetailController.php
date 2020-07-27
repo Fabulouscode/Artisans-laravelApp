@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Collection;
 use DB;
 use Auth;
 use App\UserDetail;
-// use App\User;
 class UserDetailController extends Controller
 {
      public $avatar = "/images/";
@@ -19,9 +18,6 @@ class UserDetailController extends Controller
         ->leftjoin('user_details', 'users.id', '=', 'user_details.userId')->select('*','users.id AS uid')
     ->where('users.id', '!=', $id)
         ->get();
-        // return view('home')
-        // ->with(['userDetail'=>$UserDetails]);
-        // dd($userDetails);
         return view('home')->with(['userDetails'=>$userDetails]);
     }
     
@@ -78,13 +74,7 @@ class UserDetailController extends Controller
         ->where('users.id', '=', $id)
         ->select('*')
         ->get();
-        // dd($skills);
-        //dd($skills);
-        // ->join('contacts', 'users.id', '=', 'contacts.userId')
-        // ->join('experiences', 'users.id', '=', 'experiences.userId')->join('education', 'users.id', '=', 'education.userId')
-        // ->join('skills', 'users.id', '=', 'skills.userId')
-        // return view('home')
-        // ->with(['userDetail'=>$UserDetails]);
+       
         return view('/userDetails', compact(['details', $details, 'skills', $skills]));
     }
     public function details($userId){

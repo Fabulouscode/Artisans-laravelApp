@@ -39,7 +39,7 @@ Route::get('registerOrgan', 'RegisterOrganController@index');
 Route::post('registerOrgan', 'RegisterOrganController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/search', 'UserDetailController@search');
+Route::get('/search', 'SearchController@search');
 Route::get('/profile', 'UserController@index');
 
 Route::get('home', 'UserDetailController@index');
