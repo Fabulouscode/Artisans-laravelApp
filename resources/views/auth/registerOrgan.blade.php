@@ -76,8 +76,8 @@
                                 </button>
 
                             </div>
-                            <a href="/registerOrgan" style="color:black">Click here to register as
-                                Organization</a>
+                            <a href="/register" style="color:black">Click here to register as
+                                an individual</a>
                         </div>
                     </form>
                 </div>

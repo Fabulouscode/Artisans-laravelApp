@@ -11,12 +11,11 @@
     <title>{{ config('app.name', 'artisans') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
@@ -40,6 +39,9 @@
                 @if(Auth::User())
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Artisans') }}
+                </a>
+                <a class="navbar-brand" href="{{ url('/event') }}">
+                    Events
                 </a>
                 @endif
                 @guest
@@ -73,7 +75,7 @@
                         @endif
                         @else
                         <a href="#" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
-                            <img src=""
+                            <img src="/images/{{Auth::User()->avatar}}"
                                 style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">
                         </a>
                         <li class="nav-item dropdown">
@@ -140,7 +142,7 @@
                                 <ul class="footer-menu clearfix">
                                     <li><a href="/">Home</a></li>
                                     <li><a href="/login">Artisans</a></li>
-                                    <li><a href="/events" target="_blank">Events</a></li>
+                                    <li><a href="/event" target="_blank">Events</a></li>
 
                                     <li><a href="../contact.php">Contact Us</a></li>
                                     <li><a href="#">Go to top</a></li>
@@ -217,10 +219,7 @@
     </div>
 
 
-
-</body>
-
-</html>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

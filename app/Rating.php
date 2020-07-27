@@ -9,4 +9,7 @@ class Rating extends Model
     public function User(){
         return $this->hasMany('App\User', 'userId');
     }
+    protected $fillable = [
+        'userId', 'rating'
+    ];
 }

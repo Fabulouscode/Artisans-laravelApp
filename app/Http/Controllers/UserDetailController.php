@@ -13,14 +13,19 @@ class UserDetailController extends Controller
      public $avatar = "/images/";
      
     public function index(){
+      $user = Auth::user();
+      $id = $user->id;
         $userDetails = DB::table('users')
-        ->leftjoin('user_details', 'users.id', '=', 'user_details.userId')
-        ->select('*')
+        ->leftjoin('user_details', 'users.id', '=', 'user_details.userId')->select('*','users.id AS uid')
+    ->where('users.id', '!=', $id)
         ->get();
         // return view('home')
         // ->with(['userDetail'=>$UserDetails]);
+        // dd($userDetails);
         return view('home')->with(['userDetails'=>$userDetails]);
     }
+    
+
 
     
       public function create(){
@@ -28,7 +33,7 @@ class UserDetailController extends Controller
         // $posts = Post::all();
         return view('pages/editBioData',compact('user',$user));
     }
-    public function profile(){
+    public function userD(){
         $userD = DB::table('users')
         ->leftjoin('user_details', 'users.id', '=', 'user_details.userId')
         ->select('*')
@@ -53,7 +58,7 @@ class UserDetailController extends Controller
         $userDetail->gender = request('gender');
         $userDetail->hobbies = request('hobbies');
         $userDetail->city = request('city');
-        $userDetail->whatUDo = request('profession');
+        $userDetail->profession = request('profession');
         $userDetail->save();
  
         return redirect('/profile')

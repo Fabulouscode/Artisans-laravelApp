@@ -30,9 +30,10 @@
         <div class="row justify-content-center">
 
             <div class="profile-header-container">
+                
                 <div class="profile-header-img">
                     <img class="rounded-circle" style=" width: 100px;
-    height: 100px;" src="" />
+    height: 100px;" src="/images/{{Auth::User()->avatar}}" />
                     <!-- badge -->
                     <div class="rank-label-container">
                         <span class="label label-default rank-label"></span>
@@ -68,12 +69,15 @@
                 <h5 class="card-title">BASIC INFOR <a style="float:right;" href="pages/editBioData"
                         class="btn btn-success">ADD</a></h5>
                 <ul>
-
-                    @foreach($userd AS $use)
-                    <li> {{$use->hobbies}}</li>
-
+                    <?php $user = Auth::user();
+                        $id = $user->id; 
+                        $details = App\UserDetail::where('userId', $id)->get(); ?>
+                    @foreach($details as $detail)
+                    <li><b>Gender:</b> {{$detail->gender}}</li>
+                    <li><b>Hobby:</b> {{$detail->hobbies}}</li>
+                    <li><b>City:</b> {{$detail->city}}</li>
+                    <li><b>Profession:</b> {{$detail->profession}}</li>
                     @endforeach
-
                 </ul>
 
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -87,9 +91,15 @@
                 <p class="card-text">
                     <ul>
 
-                        @foreach($skills AS $skill)
+                        <?php
+                         $user = Auth::user();
+                         $id = $user->id;
+                        
+                        $skills = App\Skill::select('*')->where('userId', $id)->get();
+                     
+                        ?>
+                        @foreach($skills as $skill)
                         <li> {{$skill->skillName}}</li>
-
                         @endforeach
 
                     </ul>
@@ -101,28 +111,25 @@
 
             <div class="card-body">
 
-                @if($countContacts < 0) <h5 class="card-title">Add Contacts <a style="float:right;"
-                        href="pages/contacts" class="btn btn-success">ADD</a></h5>
-                    @else
-                    <h5 class="card-title">Edits Contacts <a style="float:right;" href="pages/editContacts"
-                            class="btn btn-success">EDIT</a></h5>
-                    @endif
-                    <p class="card-text">
-                        <ul>
-                            @foreach($contacts AS $contact)
-                            <li>Email: {{$contact->email}}</li>
-                            <li>Phone: {{$contact->phone}}</li>
-                            <li>Country: {{$contact->country}}</li>
-                            <li>State: {{$contact->state}}</li>
-                            <li>City: {{$contact->city}}</li>
-                            <li>Facebook: {{$contact->facebook}}</li>
-                            <li>Twitter: {{$contact->twitter}}</li>
-                            <li>Instagram: {{$contact->instagram}}</li>
-                            <li>Youtube: {{$contact->youtube}}</li>
-                            @endforeach
-                        </ul>
-                    </p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">Add Contacts <a style="float:right;" href="pages/contacts"
+                        class="btn btn-success">ADD</a></h5>
+
+                <p class="card-text">
+                    <ul>
+                        @foreach($contacts AS $contact)
+                        <li><b>Email:</b> {{$contact->email}}</li>
+                        <li><b>Phone:</b> {{$contact->phone}}</li>
+                        <li><b>Country:</b> {{$contact->country}}</li>
+                        <li><b>State:</b> {{$contact->state}}</li>
+                        <li><b>City:</b> {{$contact->city}}</li>
+                        <li><b>Facebook:</b> {{$contact->facebook}}</li>
+                        <li><b>Twitter:</b> {{$contact->twitter}}</li>
+                        <li><b>Instagram:</b> {{$contact->instagram}}</li>
+                        <li><b>Youtube:</b> {{$contact->youtube}}</li>
+                        @endforeach
+                    </ul>
+                </p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
     </div>
@@ -136,7 +143,22 @@
             <div class="card-body">
                 <h5 class="card-title">Add Education Qualification<a style="float:right;" href="pages/education"
                         class="btn btn-success">ADD</a></h5>
-
+                <ul>
+                    <?php
+                         $user = Auth::user();
+                         $id = $user->id;
+                        
+                        $education = App\Education::select('*')->where('userId', $id)->get();
+                     
+                        ?>
+                    @foreach($education as $edu)
+                    <li> {{$edu->institution}}</li>
+                    <li> {{$edu->program}}</li>
+                    <li> {{$edu->fieldOfStudy}}</li>
+                    <li> {{$edu->startYear}}</li>
+                    <li> {{$edu->endYear}}</li>
+                    @endforeach
+                </ul>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>

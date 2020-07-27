@@ -35,19 +35,21 @@
 // });
 
 Auth::routes();
-
+Route::get('registerOrgan', 'RegisterOrganController@index');
+Route::post('registerOrgan', 'RegisterOrganController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/search', 'UserDetailController@search');
-Route::get('profile', 'UserController@index');
+Route::get('/profile', 'UserController@index');
 
 Route::get('home', 'UserDetailController@index');
+
 Route::post('profile', 'UserController@updateAvatar');
 Route::get('pages/editBioData', 'UserDetailController@create');
 Route::get('/userDetails/{id}', 'UserDetailController@show');
 
 
-Route::get('profile', 'UserDetailController@profile');
+// Route::get('profile', 'UserDetailController@profile');
 Route::post('pages/editBioData', 'UserDetailController@storeUserDetails');
 Route::get('profile/', 'UserDetailController@showD');
 
@@ -65,3 +67,7 @@ Route::post('pages/education', 'EducationController@storeEducation');
 //Experience
 Route::get('pages/addExperience', 'ExperienceController@create');
 Route::post('pages/addExperience', 'ExperienceController@storeExperience');
+
+//Events
+Route::resource('event', 'EventController');
+//organ

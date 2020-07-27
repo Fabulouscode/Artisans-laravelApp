@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{action('RegisterOrganController@store')}}">
                         @csrf
 
                         <div class="form-group row">
@@ -76,8 +76,8 @@
                                 </button>
 
                             </div>
-                            <a href="/registerOrgan" style="color:black">Click here to register as
-                                Organization</a>
+                            <a href="/register" style="color:black">Click here to register as
+                                an individual</a>
                         </div>
                     </form>
                 </div>
